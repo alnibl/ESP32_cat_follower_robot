@@ -1,0 +1,188 @@
+# =============================================================================
+# .gitignore для ESP32 Cat Follower Robot
+# =============================================================================
+
+# ========== КОНФИДЕНЦИАЛЬНЫЕ ФАЙЛЫ ==========
+# Confidential Files
+
+# Файл с паролями и IP адресами (НЕ КОММИТИТЬ!)
+.env
+
+# Локальные конфигурационные файлы
+*.local.py
+*.local.ino
+config.local.*
+
+# ========== PYTHON ==========
+# Python Virtual Environment
+cat_env/
+venv/
+env/
+ENV/
+*.pyc
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+.pytest_cache/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# ========== YOLO МОДЕЛИ ==========
+# YOLO Models (большие файлы)
+
+# PyTorch модели
+*.pt
+yolo*.pt
+
+# OpenVINO модели (экспортированные)
+*_openvino_model/
+*.xml
+*.bin
+
+# ONNX модели
+*.onnx
+
+# TensorFlow модели
+*.pb
+*.tflite
+
+# ========== ЛОГИ И ДАННЫЕ ==========
+# Logs and Data
+
+# Логи
+*.log
+logs/
+robot_commands.log
+
+# Временные файлы
+*.tmp
+*.temp
+temp/
+
+# Кэш
+.cache/
+*.cache
+
+# Benchmark результаты
+benchmark_*.txt
+benchmark_*.csv
+
+# ========== IDE И РЕДАКТОРЫ ==========
+# IDEs and Editors
+
+# VS Code
+.vscode/
+*.code-workspace
+
+# PyCharm
+.idea/
+*.iml
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# ========== ARDUINO ==========
+# Arduino
+
+# Arduino build директории
+build/
+.build/
+
+# ========== ОПЕРАЦИОННАЯ СИСТЕМА ==========
+# Operating System
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Linux
+*~
+.directory
+
+# ========== ВИДЕО И ИЗОБРАЖЕНИЯ ==========
+# Videos and Images (если сохраняете записи с камеры)
+
+# Видео записи
+*.mp4
+*.avi
+*.mov
+*.mkv
+
+# Скриншоты (если много)
+screenshots/*.png
+screenshots/*.jpg
+
+# ========== РАЗНОЕ ==========
+# Miscellaneous
+
+# Backup files
+*.bak
+*.backup
+*~
+
+# Compiled files
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+
+# Archives
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# =============================================================================
+# ВАЖНО: Убедитесь что .env файл в списке перед первым коммитом!
+# IMPORTANT: Make sure .env file is listed before first commit!
+# =============================================================================

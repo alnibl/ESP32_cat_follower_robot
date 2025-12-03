@@ -1,0 +1,37 @@
+timestamp,category,phase,direction,speed_pwm,duration_target_ms,duration_actual_ms,latency_ms,success,moved,distance_cm,quality_score,notes,test_id
+2025-12-02T17:10:03.860711,connection,1,N/A,0,0,0,359.26,True,N/A,N/A,N/A,ESP32 responded with HTTP 200,1
+2025-12-02T17:11:33.599433,pwm_calibration,1,forward,115,1000,2000,0,True,True,N/A,N/A,Minimum PWM found: 115,2
+2025-12-02T17:11:37.642562,latency,2,N/A,0,0,0,96.67,False,N/A,N/A,N/A,"Network RTT: avg=96.67ms, min=69.47ms, max=132.45ms",3
+2025-12-02T17:11:41.749923,latency,2,N/A,0,0,0,101.33,True,N/A,N/A,N/A,"Command latency: avg=101.33ms, success_rate=100.0%",4
+2025-12-02T17:13:56.996825,latency,2,forward,200,0,0,0,False,False,N/A,N/A,No data collected,5
+2025-12-02T17:15:19.128241,duration,3,forward,150,250,2000,107.41,True,True,0,5,,6
+2025-12-02T17:16:07.705295,duration,3,forward,150,500,2000,312.95,True,True,0,5,,7
+2025-12-02T17:16:44.002007,duration,3,forward,150,750,2000,88.9,True,True,30.0,5,5,8
+2025-12-02T17:17:15.395896,duration,3,forward,150,1000,2000,147.41,True,True,30.0,5,,9
+2025-12-02T17:17:39.020073,duration,3,backward,150,250,2000,69.89,True,True,30.0,5,,10
+2025-12-02T17:17:57.247936,duration,3,backward,150,500,2000,111.49,True,True,30.0,5,,11
+2025-12-02T17:18:29.965361,duration,3,backward,150,750,2000,113.63,True,True,30.0,5,,12
+2025-12-02T17:18:48.844456,duration,3,backward,150,1000,2000,445.9,True,True,30.0,5,,13
+2025-12-02T17:19:10.505720,duration,3,left,150,250,500,129.49,True,True,10.0,5,,14
+2025-12-02T17:20:00.523595,duration,3,left,150,500,500,66.33,True,True,10.0,5,,15
+2025-12-02T17:20:14.161889,duration,3,left,150,750,500,115.53,True,True,10.0,5,,16
+2025-12-02T17:20:29.363202,duration,3,left,150,1000,500,97.62,True,True,10.0,5,,17
+2025-12-02T17:20:44.347659,duration,3,right,150,250,500,53.69,True,True,10.0,5,,18
+2025-12-02T17:21:00.313371,duration,3,right,150,500,500,123.6,True,True,10.0,5,,19
+2025-12-02T17:21:13.022210,duration,3,right,150,750,500,131.28,True,True,10.0,5,,20
+2025-12-02T17:22:14.035531,duration,3,right,150,1000,500,134.57,True,True,5.0,5,,21
+2025-12-02T17:22:44.178685,speed,4,forward,100,1000,2000,123.75,True,True,0.0,0,Speed rating: 0,22
+2025-12-02T17:23:15.426826,speed,4,forward,125,1000,2000,96.13,True,True,30.0,4,Speed rating: medium,23
+2025-12-02T17:23:49.835162,speed,4,forward,150,1000,2000,66.5,True,True,30.0,4,Speed rating: medium,24
+2025-12-02T17:24:16.856453,speed,4,forward,175,1000,2000,78.67,True,True,40.0,3,Speed rating: fast,25
+2025-12-02T17:24:43.814914,speed,4,forward,200,1000,2000,76.38,True,True,50.0,2,Speed rating: fast,26
+2025-12-02T17:25:26.586926,speed,4,left,100,1000,500,1929.6,True,True,0.0,0,Speed rating: 0,27
+2025-12-02T17:25:43.739004,speed,4,left,125,1000,500,95.79,True,True,5.0,4,Speed rating: medium,28
+2025-12-02T17:26:02.744783,speed,4,left,150,1000,500,438.26,True,True,5.0,3,Speed rating: medium,29
+2025-12-02T17:26:16.871680,speed,4,left,175,1000,500,91.42,True,True,5.0,1,Speed rating: fast,30
+2025-12-02T17:26:51.321190,speed,4,left,200,1000,500,90.58,True,True,5.0,1,Speed rating: fast,31
+2025-12-02T17:27:02.677868,speed,4,left,225,1000,500,434.18,True,True,10.0,1,Speed rating: fast,32
+2025-12-02T17:27:14.885201,speed,4,left,255,1000,500,63.15,True,True,10.0,1,Speed rating: fast,33
+2025-12-02T17:28:03.371146,sequence,5,forward→backward,180,1000,2000,1663.65,False,True,N/A,2,Pause observed: ехал только вперед,34
+2025-12-02T17:28:18.577081,sequence,5,forward→stop,200,500,500,94.37,True,True,0.0,5,Braking distance: 0.0cm,35
+2025-12-02T17:29:19.133696,sequence,5,complex,180,0,0,0,False,True,N/A,3,"All executed: вперед, влево, вправо, стоп",36

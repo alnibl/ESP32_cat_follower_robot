@@ -1,0 +1,114 @@
+# =============================================================================
+# Python Dependencies для ESP32 Cat Follower Robot
+# Python Dependencies for ESP32 Cat Follower Robot
+# =============================================================================
+
+# ========== CORE LIBRARIES ==========
+# Основные библиотеки
+
+# Обработка переменных окружения (.env файл)
+# Environment variables handling (.env file)
+python-dotenv==1.0.0
+
+# HTTP запросы к ESP32
+# HTTP requests to ESP32
+requests==2.31.0
+
+# ========== COMPUTER VISION ==========
+# Компьютерное зрение
+
+# OpenCV для работы с видео и изображениями
+# OpenCV for video and image processing
+opencv-python==4.8.1.78
+
+# OpenCV contrib (дополнительные модули)
+# OpenCV contrib (additional modules)
+opencv-contrib-python==4.8.1.78
+
+# NumPy для работы с массивами
+# NumPy for array operations
+numpy==1.24.3
+
+# ========== YOLO OBJECT DETECTION ==========
+# YOLO детекция объектов
+
+# Ultralytics YOLO11 (YOLOv11)
+# Ultralytics YOLO11 (YOLOv11)
+ultralytics==8.3.0
+
+# PyTorch (для YOLO)
+# PyTorch (for YOLO)
+torch==2.1.0
+torchvision==0.16.0
+
+# ========== ACCELERATION (OPTIONAL) ==========
+# Ускорение (опционально)
+
+# OpenVINO для ускорения на Intel CPU (рекомендуется!)
+# OpenVINO for Intel CPU acceleration (recommended!)
+# Ускоряет YOLO в 5x раз на Intel процессорах
+# Accelerates YOLO 5x on Intel processors
+openvino==2024.0.0
+openvino-dev==2024.0.0
+
+# ========== MONITORING & DEBUGGING ==========
+# Мониторинг и отладка
+
+# Rich для красивого вывода в консоль (опционально)
+# Rich for beautiful console output (optional)
+# rich==13.7.0
+
+# Colorama для цветного вывода в Windows (опционально)
+# Colorama for colored output in Windows (optional)
+# colorama==0.4.6
+
+# =============================================================================
+# ИНСТРУКЦИЯ ПО УСТАНОВКЕ
+# Installation Instructions
+# =============================================================================
+#
+# 1. Создайте виртуальное окружение:
+#    Create virtual environment:
+#
+#    python -m venv cat_env
+#
+# 2. Активируйте виртуальное окружение:
+#    Activate virtual environment:
+#
+#    Windows (PowerShell):
+#      cat_env\Scripts\activate
+#
+#    Windows (CMD):
+#      cat_env\Scripts\activate.bat
+#
+#    Linux/macOS:
+#      source cat_env/bin/activate
+#
+# 3. Установите зависимости:
+#    Install dependencies:
+#
+#    pip install -r requirements.txt
+#
+# 4. Проверьте установку:
+#    Verify installation:
+#
+#    python -c "import cv2; import torch; import ultralytics; print('OK')"
+#
+# =============================================================================
+# ПРИМЕЧАНИЯ
+# Notes
+# =============================================================================
+#
+# - OpenVINO работает ТОЛЬКО на Intel CPU (не AMD, не ARM)
+#   OpenVINO works ONLY on Intel CPU (not AMD, not ARM)
+#
+# - PyTorch автоматически выберет CPU версию (нет GPU поддержки)
+#   PyTorch will automatically choose CPU version (no GPU support)
+#
+# - Для GPU ускорения установите CUDA версию PyTorch отдельно
+#   For GPU acceleration install CUDA version of PyTorch separately
+#
+# - Размер установки: ~3GB (включая все модели)
+#   Installation size: ~3GB (including all models)
+#
+# =============================================================================
