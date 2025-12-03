@@ -101,6 +101,11 @@ temp/
 benchmark_*.txt
 benchmark_*.csv
 
+# Тестовые отчеты
+TEST_REPORT_*.md
+test_report_*.json
+test_results_*.csv
+
 # ========== IDE И РЕДАКТОРЫ ==========
 # IDEs and Editors
 
