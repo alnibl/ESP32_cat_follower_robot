@@ -18,8 +18,8 @@
 // ===== НАСТРОЙТЕ ЭТИ ПАРАМЕТРЫ =====
 // ВАЖНО: Используйте значения из файла .env (загрузите его локально, не коммитьте в Git!)
 // IMPORTANT: Use values from .env file (load it locally, don't commit to Git!)
-const char* ssid = "YOUR_WIFI_SSID";      // Замените на имя вашей WiFi сети
-const char* password = "YOUR_WIFI_PASSWORD";   // Замените на пароль вашей WiFi
+const char* ssid = "   ";      // Замените на имя вашей WiFi сети
+const char* password = "   ";   // Замените на пароль вашей WiFi
 
 // ===== ПИНЫ ДЛЯ ПОДКЛЮЧЕНИЯ МОТОРОВ =====
 // ВАЖНО! На ESP32-S3 GPIO 26-32 используются для Flash/PSRAM - не использовать!
@@ -37,7 +37,8 @@ const int rightMotorPin2 = 41;  // Подключите к IN4 на MX1508 (GPIO
 WebServer server(80);
 
 // Переменная для скорости (0-255)
-int motorSpeed = 150;
+int motorSpeed = 150;  // Скорость для forward/backward
+int turnSpeed = 230;   // Увеличенная скорость для поворотов (зафиксированное колесо)
 
 // Переменная для отслеживания текущего состояния моторов
 enum MotorState { STOPPED, FORWARD, BACKWARD, LEFT, RIGHT };
@@ -342,7 +343,7 @@ void moveForwardDirect() {
 void moveBackwardDirect() {
   Serial.print("⏪ Moving BACKWARD @ ");
   Serial.print(motorSpeed);
-  Serial.println(" PWM (1.5 sec)");  // ОПТИМИЗИРОВАНО v2.1: было 2 сек
+  Serial.println(" PWM (1.5 sec)");
 
   // Левый мотор назад
   analogWrite(leftMotorPin1, 0);
@@ -353,39 +354,39 @@ void moveBackwardDirect() {
 
   currentState = BACKWARD;
 
-  // Запускаем таймер на 1.5 секунды (ОПТИМИЗИРОВАНО v2.1)
+  // Запускаем таймер на 1.5 секунды
   motorStartTime = millis();
-  motorDuration = 1500;  // 1500мс = 1.5 секунды (было 2000)
+  motorDuration = 1500;
   autoStopEnabled = true;
 }
 
 void turnLeftDirect() {
   Serial.print("⬅️  Turning LEFT @ ");
-  Serial.print(motorSpeed);
-  Serial.println(" PWM (0.4 sec)");  // ОПТИМИЗИРОВАНО v2.1: было 0.5 сек
+  Serial.print(turnSpeed);
+  Serial.println(" PWM (0.4 sec)");
 
   // Левый мотор медленнее или стоп
   analogWrite(leftMotorPin1, 0);
   analogWrite(leftMotorPin2, 0);
   // Правый мотор вперед
-  analogWrite(rightMotorPin1, motorSpeed);
+  analogWrite(rightMotorPin1, turnSpeed);
   analogWrite(rightMotorPin2, 0);
 
   currentState = LEFT;
 
-  // Запускаем таймер на 0.4 секунды (ОПТИМИЗИРОВАНО v2.1)
+  // Запускаем таймер на 0.4 секунды
   motorStartTime = millis();
-  motorDuration = 400;  // 400мс = 0.4 секунды (было 500)
+  motorDuration = 400;
   autoStopEnabled = true;
 }
 
 void turnRightDirect() {
   Serial.print("➡️  Turning RIGHT @ ");
-  Serial.print(motorSpeed);
-  Serial.println(" PWM (0.4 sec)");  // ОПТИМИЗИРОВАНО v2.1: было 0.5 сек
+  Serial.print(turnSpeed);
+  Serial.println(" PWM (0.4 sec)");
 
   // Левый мотор вперед
-  analogWrite(leftMotorPin1, motorSpeed);
+  analogWrite(leftMotorPin1, turnSpeed);
   analogWrite(leftMotorPin2, 0);
   // Правый мотор медленнее или стоп
   analogWrite(rightMotorPin1, 0);
@@ -393,9 +394,9 @@ void turnRightDirect() {
 
   currentState = RIGHT;
 
-  // Запускаем таймер на 0.4 секунды (ОПТИМИЗИРОВАНО v2.1)
+  // Запускаем таймер на 0.4 секунды
   motorStartTime = millis();
-  motorDuration = 400;  // 400мс = 0.4 секунды (было 500)
+  motorDuration = 400;
   autoStopEnabled = true;
 }
 
@@ -498,16 +499,16 @@ void setupWebServer() {
     html += "</style></head><body>";
 
     html += "<h1>🤖 ESP32 Cat Robot v2.1</h1>";
-    html += "<div class='status info'>✅ BUGFIX: Queue processing fixed!</div>";
-    html += "<p><strong>IP:</strong> " + WiFi.localIP().toString() + " | <strong>Speed:</strong> " + String(motorSpeed) + " PWM</p>";
+    html += "<div class='status info'>⚙️ Fixed wheel mode - Turn: 230 PWM, Move: 150 PWM</div>";
+    html += "<p><strong>IP:</strong> " + WiFi.localIP().toString() + "</p>";
 
     html += "<div id='lastCommand'>Ready to control...</div>";
 
     html += "<div class='controls'>";
-    html += "<button class='btn btn-forward' onclick='sendCommand(\"forward\")'>⬆️<br>Forward<br>(1.5s)</button>";
-    html += "<button class='btn btn-left' onclick='sendCommand(\"left\")'>⬅️<br>Left<br>(0.4s)</button>";
-    html += "<button class='btn btn-right' onclick='sendCommand(\"right\")'>➡️<br>Right<br>(0.4s)</button>";
-    html += "<button class='btn btn-backward' onclick='sendCommand(\"backward\")'>⬇️<br>Backward<br>(1.5s)</button>";
+    html += "<button class='btn btn-forward' onclick='sendCommand(\"forward\")'>⬆️<br>Forward<br>(150 PWM)</button>";
+    html += "<button class='btn btn-left' onclick='sendCommand(\"left\")'>⬅️<br>Left<br>(230 PWM)</button>";
+    html += "<button class='btn btn-right' onclick='sendCommand(\"right\")'>➡️<br>Right<br>(230 PWM)</button>";
+    html += "<button class='btn btn-backward' onclick='sendCommand(\"backward\")'>⬇️<br>Backward<br>(150 PWM)</button>";
     html += "<button class='btn btn-stop' onclick='sendCommand(\"stop\")'>⏹️ STOP</button>";
     html += "</div>";
 
