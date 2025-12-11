@@ -361,42 +361,42 @@ void moveBackwardDirect() {
 }
 
 void turnLeftDirect() {
-  Serial.print("⬅️  Turning LEFT @ ");
+  Serial.print("⬅️  Turning LEFT (tank turn) @ ");
   Serial.print(turnSpeed);
-  Serial.println(" PWM (0.4 sec)");
+  Serial.println(" PWM (0.3 sec)");
 
-  // Левый мотор медленнее или стоп
+  // Левый мотор НАЗАД (tank turn)
   analogWrite(leftMotorPin1, 0);
-  analogWrite(leftMotorPin2, 0);
+  analogWrite(leftMotorPin2, turnSpeed);
   // Правый мотор вперед
   analogWrite(rightMotorPin1, turnSpeed);
   analogWrite(rightMotorPin2, 0);
 
   currentState = LEFT;
 
-  // Запускаем таймер на 0.4 секунды
+  // Запускаем таймер на 0.3 секунды
   motorStartTime = millis();
-  motorDuration = 400;
+  motorDuration = 300;
   autoStopEnabled = true;
 }
 
 void turnRightDirect() {
-  Serial.print("➡️  Turning RIGHT @ ");
+  Serial.print("➡️  Turning RIGHT (tank turn) @ ");
   Serial.print(turnSpeed);
-  Serial.println(" PWM (0.4 sec)");
+  Serial.println(" PWM (0.3 sec)");
 
   // Левый мотор вперед
   analogWrite(leftMotorPin1, turnSpeed);
   analogWrite(leftMotorPin2, 0);
-  // Правый мотор медленнее или стоп
+  // Правый мотор НАЗАД (tank turn)
   analogWrite(rightMotorPin1, 0);
-  analogWrite(rightMotorPin2, 0);
+  analogWrite(rightMotorPin2, turnSpeed);
 
   currentState = RIGHT;
 
-  // Запускаем таймер на 0.4 секунды
+  // Запускаем таймер на 0.3 секунды
   motorStartTime = millis();
-  motorDuration = 400;
+  motorDuration = 300;
   autoStopEnabled = true;
 }
 
@@ -524,10 +524,12 @@ void setupWebServer() {
 
     html += "<script>";
     html += "function sendCommand(action) {";
-    html += "  fetch('/command?action=' + action + '&speed=" + String(motorSpeed) + "')";
+    html += "  var speed = " + String(motorSpeed) + ";";
+    html += "  if (action === 'left' || action === 'right') { speed = " + String(turnSpeed) + "; }";
+    html += "  fetch('/command?action=' + action + '&speed=' + speed)";
     html += "    .then(r => r.json())";
     html += "    .then(data => {";
-    html += "      document.getElementById('lastCommand').textContent = '✅ Sent: ' + action.toUpperCase() + ' @ ' + data.speed + ' PWM';";
+    html += "      document.getElementById('lastCommand').textContent = '✅ Sent: ' + action.toUpperCase() + ' @ ' + speed + ' PWM';";
     html += "      document.getElementById('lastCommand').style.color = '#2e7d32';";
     html += "      updateStats();";
     html += "    })";
